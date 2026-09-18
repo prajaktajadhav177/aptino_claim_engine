@@ -1,0 +1,1842 @@
+[
+  {
+    "suite": "public_cases",
+    "case_id": "PUB-001",
+    "response": {
+      "case_id": "PUB-001",
+      "decision": "ADMISSIBLE",
+      "confidence": 0.85,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 437, continuous coverage months: 14.0, prior-insurer continuity years: 0)."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 30,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 90,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 437, continuous coverage months: 14.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 30,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 90,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 12 evidence chunks retrieved",
+          "elapsed_ms": 30.2
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=ADMISSIBLE findings=2 limits=3 missing_evidence=1",
+          "elapsed_ms": 0.1
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=ADMISSIBLE confidence=0.85",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 30.6
+        }
+      ]
+    }
+  },
+  {
+    "suite": "public_cases",
+    "case_id": "PUB-002",
+    "response": {
+      "case_id": "PUB-002",
+      "decision": "NOT_ADMISSIBLE",
+      "confidence": 0.85,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The claim falls within the policy's 30-day initial waiting period (days since inception: 19, continuous coverage months: 0), and no prior-insurer continuity is on record to waive it."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 20,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 30,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The claim falls within the policy's 30-day initial waiting period (days since inception: 19, continuous coverage months: 0), and no prior-insurer continuity is on record to waive it.",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 20,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 30,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 12 evidence chunks retrieved",
+          "elapsed_ms": 23.6
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=NOT_ADMISSIBLE findings=2 limits=3 missing_evidence=1",
+          "elapsed_ms": 0.1
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=NOT_ADMISSIBLE confidence=0.85",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 23.9
+        }
+      ]
+    }
+  },
+  {
+    "suite": "public_cases",
+    "case_id": "PUB-003",
+    "response": {
+      "case_id": "PUB-003",
+      "decision": "NOT_ADMISSIBLE",
+      "confidence": 0.85,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 830, continuous coverage months: 27.0, prior-insurer continuity years: 0).",
+        "The condition is pre-existing and only 27 effective months of continuous coverage have elapsed, which is short of the policy's 48-month Pre-Existing Disease waiting period."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 35,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 70,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 830, continuous coverage months: 27.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "The condition is pre-existing and only 27 effective months of continuous coverage have elapsed, which is short of the policy's 48-month Pre-Existing Disease waiting period.",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 35,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 70,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'pre_existing_disease', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 14 evidence chunks retrieved",
+          "elapsed_ms": 29.2
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=NOT_ADMISSIBLE findings=3 limits=3 missing_evidence=1",
+          "elapsed_ms": 0.1
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=NOT_ADMISSIBLE confidence=0.85",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 29.4
+        }
+      ]
+    }
+  },
+  {
+    "suite": "public_cases",
+    "case_id": "PUB-004",
+    "response": {
+      "case_id": "PUB-004",
+      "decision": "ADMISSIBLE_WITH_LIMITS",
+      "confidence": 0.8,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 858, continuous coverage months: 28.0, prior-insurer continuity years: 0).",
+        "The domiciliary treatment conditions (room unavailable or patient not movable) are satisfied."
+      ],
+      "applicable_limits": [
+        "Domiciliary Hospitalization expenses are capped at 20% of Sum Insured (INR 100,000). Claimed: INR 105,000 -> capped, payable INR 100,000.",
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 25,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 80,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 858, continuous coverage months: 28.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "The domiciliary treatment conditions (room unavailable or patient not movable) are satisfied.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Domiciliary Treatment",
+          "chunk_id": "chunk_c88c94fa"
+        },
+        {
+          "claim": "Domiciliary Hospitalization expenses are capped at 20% of Sum Insured (INR 100,000). Claimed: INR 105,000 -> capped, payable INR 100,000.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Domiciliary Treatment",
+          "chunk_id": "chunk_c88c94fa"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 25,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 80,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'domiciliary_treatment', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 14 evidence chunks retrieved",
+          "elapsed_ms": 26.5
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=ADMISSIBLE_WITH_LIMITS findings=3 limits=4 missing_evidence=1",
+          "elapsed_ms": 0.1
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=ADMISSIBLE_WITH_LIMITS confidence=0.8",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 26.7
+        }
+      ]
+    }
+  },
+  {
+    "suite": "public_cases",
+    "case_id": "PUB-005",
+    "response": {
+      "case_id": "PUB-005",
+      "decision": "ADMISSIBLE",
+      "confidence": 0.85,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 892, continuous coverage months: 29.0, prior-insurer continuity years: 0).",
+        "'Cataract' is on the policy's first-year specific-disease waiting-period list, but continuous prior coverage of at least one year waives that waiting period for this claim.",
+        "The procedure ('cataract') is one the policy recognises as qualifying for less-than-24-hour Day Care Treatment because of technological advancement, so the usual 24-hour minimum stay is waived."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 15,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 45,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 892, continuous coverage months: 29.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "'Cataract' is on the policy's first-year specific-disease waiting-period list, but continuous prior coverage of at least one year waives that waiting period for this claim.",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "The procedure ('cataract') is one the policy recognises as qualifying for less-than-24-hour Day Care Treatment because of technological advancement, so the usual 24-hour minimum stay is waived.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Day Care Centre",
+          "chunk_id": "chunk_159d4a23"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 15,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 45,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'specific_disease_first_year', 'day_care_treatment', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 16 evidence chunks retrieved",
+          "elapsed_ms": 31.8
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=ADMISSIBLE findings=4 limits=3 missing_evidence=1",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=ADMISSIBLE confidence=0.85",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 32.0
+        }
+      ]
+    }
+  },
+  {
+    "suite": "public_cases",
+    "case_id": "PUB-006",
+    "response": {
+      "case_id": "PUB-006",
+      "decision": "NEEDS_REVIEW",
+      "confidence": 0.55,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 914, continuous coverage months: 30.0, prior-insurer continuity years: 0).",
+        "Medical necessity of the treatment/stay has not been confirmed in the supplied evidence, which the policy requires ('Medically Necessary')."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 20,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 100,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Confirmation that the treatment/hospitalization was medically necessary.",
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 914, continuous coverage months: 30.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "Medical necessity of the treatment/stay has not been confirmed in the supplied evidence, which the policy requires ('Medically Necessary').",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Medically Necessary",
+          "chunk_id": "chunk_9440097a"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 20,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 100,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'medical_necessity', 'initial_waiting_period', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 14 evidence chunks retrieved",
+          "elapsed_ms": 26.7
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=NEEDS_REVIEW findings=3 limits=3 missing_evidence=2",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=NEEDS_REVIEW confidence=0.55",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 26.8
+        }
+      ]
+    }
+  },
+  {
+    "suite": "public_cases",
+    "case_id": "PUB-007",
+    "response": {
+      "case_id": "PUB-007",
+      "decision": "ADMISSIBLE_WITH_LIMITS",
+      "confidence": 0.8,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 957, continuous coverage months: 31.0, prior-insurer continuity years: 0)."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 250,000). Claimed: INR 300,000 -> capped, payable INR 250,000.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 400,000). Claimed: INR 500,000 -> capped, payable INR 400,000.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 10,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+        "Total hospitalization expenses for this illness (INR 881,500) exceed the policy's 75% of Sum Insured package cap (INR 750,000); the payable amount is restricted to the cap."
+      ],
+      "missing_evidence": [
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 957, continuous coverage months: 31.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 250,000). Claimed: INR 300,000 -> capped, payable INR 250,000.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 400,000). Claimed: INR 500,000 -> capped, payable INR 400,000.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 10,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Total hospitalization expenses for this illness (INR 881,500) exceed the policy's 75% of Sum Insured package cap (INR 750,000); the payable amount is restricted to the cap.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 12 evidence chunks retrieved",
+          "elapsed_ms": 22.3
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=ADMISSIBLE_WITH_LIMITS findings=2 limits=4 missing_evidence=1",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=ADMISSIBLE_WITH_LIMITS confidence=0.8",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 22.4
+        }
+      ]
+    }
+  },
+  {
+    "suite": "public_cases",
+    "case_id": "PUB-008",
+    "response": {
+      "case_id": "PUB-008",
+      "decision": "NOT_ADMISSIBLE",
+      "confidence": 0.85,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 975, continuous coverage months: 32.0, prior-insurer continuity years: 0).",
+        "The treatment is described as cosmetic, which the policy excludes unless it relates to treatment of an Injury or Disease; no such link is stated in the case facts."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 20,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 30,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 975, continuous coverage months: 32.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "The treatment is described as cosmetic, which the policy excludes unless it relates to treatment of an Injury or Disease; no such link is stated in the case facts.",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 20,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 30,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'cosmetic_exclusion', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 14 evidence chunks retrieved",
+          "elapsed_ms": 26.1
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=NOT_ADMISSIBLE findings=3 limits=3 missing_evidence=1",
+          "elapsed_ms": 0.1
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=NOT_ADMISSIBLE confidence=0.85",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 26.3
+        }
+      ]
+    }
+  },
+  {
+    "suite": "public_cases",
+    "case_id": "PUB-009",
+    "response": {
+      "case_id": "PUB-009",
+      "decision": "ADMISSIBLE",
+      "confidence": 0.85,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 983, continuous coverage months: 32.0, prior-insurer continuity years: 0).",
+        "Pre-hospitalization expenses (30 days before admission) are within the policy's 30-day pre-hospitalization window; post-hospitalization expenses (60 days after discharge) are within the 60-day post-hospitalization window."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 50,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 100,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 983, continuous coverage months: 32.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "Pre-hospitalization expenses (30 days before admission) are within the policy's 30-day pre-hospitalization window; post-hospitalization expenses (60 days after discharge) are within the 60-day post-hospitalization window.",
+          "source": "policy.pdf",
+          "page": 10,
+          "section": "CLAIMS PROCEDURE",
+          "chunk_id": "chunk_bd41518a"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 50,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 100,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap', 'pre_post_hospitalization_window'] -> 14 evidence chunks retrieved",
+          "elapsed_ms": 22.7
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=ADMISSIBLE findings=3 limits=3 missing_evidence=1",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=ADMISSIBLE confidence=0.85",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 22.9
+        }
+      ]
+    }
+  },
+  {
+    "suite": "public_cases",
+    "case_id": "PUB-010",
+    "response": {
+      "case_id": "PUB-010",
+      "decision": "ADMISSIBLE",
+      "confidence": 0.85,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 247, continuous coverage months: 8.0, prior-insurer continuity years: 1.0).",
+        "'Cataract' is on the policy's first-year specific-disease waiting-period list, but continuous prior coverage of at least one year waives that waiting period for this claim.",
+        "The procedure ('cataract') is one the policy recognises as qualifying for less-than-24-hour Day Care Treatment because of technological advancement, so the usual 24-hour minimum stay is waived.",
+        "Continuous prior coverage with another Indian insurer is on record and, since the database/claim history was received, is used above to reduce the applicable waiting periods."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 20,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 60,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 247, continuous coverage months: 8.0, prior-insurer continuity years: 1.0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "'Cataract' is on the policy's first-year specific-disease waiting-period list, but continuous prior coverage of at least one year waives that waiting period for this claim.",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "The procedure ('cataract') is one the policy recognises as qualifying for less-than-24-hour Day Care Treatment because of technological advancement, so the usual 24-hour minimum stay is waived.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Day Care Centre",
+          "chunk_id": "chunk_159d4a23"
+        },
+        {
+          "claim": "Continuous prior coverage with another Indian insurer is on record and, since the database/claim history was received, is used above to reduce the applicable waiting periods.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Portability",
+          "chunk_id": "chunk_7bf27e54"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 20,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 60,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'specific_disease_first_year', 'day_care_treatment', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap', 'portability'] -> 18 evidence chunks retrieved",
+          "elapsed_ms": 37.9
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=ADMISSIBLE findings=5 limits=3 missing_evidence=1",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=ADMISSIBLE confidence=0.85",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 38.1
+        }
+      ]
+    }
+  },
+  {
+    "suite": "public_cases",
+    "case_id": "PUB-011",
+    "response": {
+      "case_id": "PUB-011",
+      "decision": "NEEDS_REVIEW",
+      "confidence": 0.55,
+      "key_findings": [
+        "The 30-day initial waiting period does not bar this claim (days since inception: 985, continuous coverage months: 32.0, prior-insurer continuity years: 0).",
+        "The supplied evidence does not establish that the treating facility is registered under the Clinical Establishments Act or meets the policy's minimum-criteria definition of a 'Hospital' (qualified nursing staff, bed count, resident medical practitioner, own operation theatre, patient records)."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 25,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 60,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Registration status / minimum-criteria documentation for the treating facility.",
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 985, continuous coverage months: 32.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "The supplied evidence does not establish that the treating facility is registered under the Clinical Establishments Act or meets the policy's minimum-criteria definition of a 'Hospital' (qualified nursing staff, bed count, resident medical practitioner, own operation theatre, patient records).",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 25,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 60,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 12 evidence chunks retrieved",
+          "elapsed_ms": 21.0
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=NEEDS_REVIEW findings=2 limits=3 missing_evidence=2",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=NEEDS_REVIEW confidence=0.55",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 21.2
+        }
+      ]
+    }
+  },
+  {
+    "suite": "public_cases",
+    "case_id": "PUB-012",
+    "response": {
+      "case_id": "PUB-012",
+      "decision": "NOT_ADMISSIBLE",
+      "confidence": 0.85,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 986, continuous coverage months: 32.0, prior-insurer continuity years: 0).",
+        "The treatment is flagged as experimental. The policy defines 'Unproven/Experimental Treatment' as treatment not based on established medical practice in India, which this claim falls under, so it is not payable."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 30,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 90,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 986, continuous coverage months: 32.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "The treatment is flagged as experimental. The policy defines 'Unproven/Experimental Treatment' as treatment not based on established medical practice in India, which this claim falls under, so it is not payable.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Unproven/Experimental Treatment",
+          "chunk_id": "chunk_4bbae042"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 30,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 90,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'experimental_treatment', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 14 evidence chunks retrieved",
+          "elapsed_ms": 31.4
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=NOT_ADMISSIBLE findings=3 limits=3 missing_evidence=1",
+          "elapsed_ms": 0.1
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=NOT_ADMISSIBLE confidence=0.85",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 31.6
+        }
+      ]
+    }
+  },
+  {
+    "suite": "custom_cases",
+    "case_id": "CUST-001",
+    "response": {
+      "case_id": "CUST-001",
+      "decision": "NOT_ADMISSIBLE",
+      "confidence": 0.85,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The claim falls within the policy's 30-day initial waiting period (days since inception: 7, continuous coverage months: 0), and no prior-insurer continuity is on record to waive it."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 40,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 60,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The claim falls within the policy's 30-day initial waiting period (days since inception: 7, continuous coverage months: 0), and no prior-insurer continuity is on record to waive it.",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 40,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 60,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 12 evidence chunks retrieved",
+          "elapsed_ms": 46.9
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=NOT_ADMISSIBLE findings=2 limits=3 missing_evidence=1",
+          "elapsed_ms": 0.1
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=NOT_ADMISSIBLE confidence=0.85",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 47.0
+        }
+      ]
+    }
+  },
+  {
+    "suite": "custom_cases",
+    "case_id": "CUST-002",
+    "response": {
+      "case_id": "CUST-002",
+      "decision": "NEEDS_REVIEW",
+      "confidence": 0.55,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 1348, continuous coverage months: 44.0, prior-insurer continuity years: 0).",
+        "The diagnosis/procedure text mentions 'diabetes', which is on the policy's specifically-excluded illness list. However, this claim may be for a complication requiring hospitalization rather than routine treatment of the listed condition itself, and the supplied case facts do not clearly distinguish the two, so this needs a human/clinical review rather than an automatic decision."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 200,000). Claimed: INR 45,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 320,000). Claimed: INR 150,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 8,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Clinical confirmation of whether the hospitalization is for 'diabetes' itself (excluded) or for a distinct complication arising from it (potentially payable).",
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 1348, continuous coverage months: 44.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "The diagnosis/procedure text mentions 'diabetes', which is on the policy's specifically-excluded illness list. However, this claim may be for a complication requiring hospitalization rather than routine treatment of the listed condition itself, and the supplied case facts do not clearly distinguish the two, so this needs a human/clinical review rather than an automatic decision.",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 200,000). Claimed: INR 45,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 320,000). Claimed: INR 150,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 8,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'excluded_illness_list', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 14 evidence chunks retrieved",
+          "elapsed_ms": 30.2
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=NEEDS_REVIEW findings=3 limits=3 missing_evidence=2",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=NEEDS_REVIEW confidence=0.55",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 30.3
+        }
+      ]
+    }
+  },
+  {
+    "suite": "custom_cases",
+    "case_id": "CUST-003",
+    "response": {
+      "case_id": "CUST-003",
+      "decision": "ADMISSIBLE_WITH_LIMITS",
+      "confidence": 0.8,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 947, continuous coverage months: 31.0, prior-insurer continuity years: 0)."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 60,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 250,000 -> capped, payable INR 200,000.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+        "Total hospitalization expenses for this illness (INR 400,800) exceed the policy's 75% of Sum Insured package cap (INR 375,000); the payable amount is restricted to the cap."
+      ],
+      "missing_evidence": [
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 947, continuous coverage months: 31.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 60,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 250,000 -> capped, payable INR 200,000.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Total hospitalization expenses for this illness (INR 400,800) exceed the policy's 75% of Sum Insured package cap (INR 375,000); the payable amount is restricted to the cap.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 12 evidence chunks retrieved",
+          "elapsed_ms": 24.9
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=ADMISSIBLE_WITH_LIMITS findings=2 limits=4 missing_evidence=1",
+          "elapsed_ms": 0.1
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=ADMISSIBLE_WITH_LIMITS confidence=0.8",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 25.0
+        }
+      ]
+    }
+  },
+  {
+    "suite": "custom_cases",
+    "case_id": "CUST-004",
+    "response": {
+      "case_id": "CUST-004",
+      "decision": "NOT_ADMISSIBLE",
+      "confidence": 0.85,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 468, continuous coverage months: 15.0, prior-insurer continuity years: 0).",
+        "The claim arises from pregnancy, childbirth, or infertility/assisted-conception treatment, which the policy excludes."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 30,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 50,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 468, continuous coverage months: 15.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "The claim arises from pregnancy, childbirth, or infertility/assisted-conception treatment, which the policy excludes.",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 30,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 50,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'pregnancy_exclusion', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 14 evidence chunks retrieved",
+          "elapsed_ms": 25.6
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=NOT_ADMISSIBLE findings=3 limits=3 missing_evidence=1",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=NOT_ADMISSIBLE confidence=0.85",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 25.7
+        }
+      ]
+    }
+  },
+  {
+    "suite": "custom_cases",
+    "case_id": "CUST-005",
+    "response": {
+      "case_id": "CUST-005",
+      "decision": "NOT_ADMISSIBLE",
+      "confidence": 0.85,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 988, continuous coverage months: 32.0, prior-insurer continuity years: 0).",
+        "The treatment is a form of Alternative Treatment (Ayurveda/Homeopathy/Unani/Siddha/Naturopathy), which the policy excludes as it only covers Allopathy/modern medicine."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 15,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 40,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 988, continuous coverage months: 32.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "The treatment is a form of Alternative Treatment (Ayurveda/Homeopathy/Unani/Siddha/Naturopathy), which the policy excludes as it only covers Allopathy/modern medicine.",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 15,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 40,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'alternative_treatment_exclusion', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 14 evidence chunks retrieved",
+          "elapsed_ms": 24.1
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=NOT_ADMISSIBLE findings=3 limits=3 missing_evidence=1",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=NOT_ADMISSIBLE confidence=0.85",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 24.3
+        }
+      ]
+    }
+  },
+  {
+    "suite": "custom_cases",
+    "case_id": "CUST-006",
+    "response": {
+      "case_id": "CUST-006",
+      "decision": "NEEDS_REVIEW",
+      "confidence": 0.55,
+      "key_findings": [
+        "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+        "The 30-day initial waiting period does not bar this claim (days since inception: 987, continuous coverage months: 32.0, prior-insurer continuity years: 0).",
+        "The diagnosis/procedure text mentions 'gastroenteritis', which is on the policy's specifically-excluded illness list. However, this claim may be for a complication requiring hospitalization rather than routine treatment of the listed condition itself, and the supplied case facts do not clearly distinguish the two, so this needs a human/clinical review rather than an automatic decision."
+      ],
+      "applicable_limits": [
+        "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 12,000 -> within limit.",
+        "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 20,000 -> within limit.",
+        "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised."
+      ],
+      "missing_evidence": [
+        "Clinical confirmation of whether the hospitalization is for 'gastroenteritis' itself (excluded) or for a distinct complication arising from it (potentially payable).",
+        "Length of hospital stay (days) to finalise the per-day room-rent sub-limit."
+      ],
+      "citations": [
+        {
+          "claim": "The hospital's network/cashless status affects how the claim is paid (cashless vs. reimbursement) but is not itself a condition for admissibility under the policy's Hospital definition.",
+          "source": "policy.pdf",
+          "page": 1,
+          "section": "DEFINITIONS / Hospital",
+          "chunk_id": "chunk_49efc923"
+        },
+        {
+          "claim": "The 30-day initial waiting period does not bar this claim (days since inception: 987, continuous coverage months: 32.0, prior-insurer continuity years: 0).",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "The diagnosis/procedure text mentions 'gastroenteritis', which is on the policy's specifically-excluded illness list. However, this claim may be for a complication requiring hospitalization rather than routine treatment of the listed condition itself, and the supplied case facts do not clearly distinguish the two, so this needs a human/clinical review rather than an automatic decision.",
+          "source": "policy.pdf",
+          "page": 8,
+          "section": "WHAT WE EXCLUDE",
+          "chunk_id": "chunk_d7303e3c"
+        },
+        {
+          "claim": "Medical Practitioner/Surgeon/Anesthetist fees are capped at 25% of Sum Insured (INR 125,000). Claimed: INR 12,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Anesthesia/medicines/diagnostics and similar expenses are capped at 40% of Sum Insured (INR 200,000). Claimed: INR 20,000 -> within limit.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        },
+        {
+          "claim": "Room/boarding/nursing expenses are capped at 1% of Sum Insured per day (INR 5,000/day); ICU expenses at 2%/day. Length of stay was not supplied, so the exact rupee cap for the room component cannot be finalised.",
+          "source": "policy.pdf",
+          "page": 7,
+          "section": "WHAT WE COVER",
+          "chunk_id": "chunk_d04f839e"
+        }
+      ],
+      "validation": {
+        "status": "PASS",
+        "unsupported_claims": []
+      },
+      "trace": [
+        {
+          "agent": "RetrievalAgent",
+          "action": "hybrid_search",
+          "detail": "dimensions=['hospital_definition', 'initial_waiting_period', 'excluded_illness_list', 'professional_fee_limit', 'other_expense_limit', 'room_sub_limit', 'package_cap'] -> 14 evidence chunks retrieved",
+          "elapsed_ms": 27.0
+        },
+        {
+          "agent": "PolicyReasoningAgent",
+          "action": "reason_over_evidence",
+          "detail": "draft_decision=NEEDS_REVIEW findings=3 limits=3 missing_evidence=2",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "ValidationAgent",
+          "action": "validate_citations",
+          "detail": "status=PASS unsupported_claims=0",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "DecisionAgent",
+          "action": "finalize_decision",
+          "detail": "decision=NEEDS_REVIEW confidence=0.55",
+          "elapsed_ms": 0.0
+        },
+        {
+          "agent": "Orchestrator",
+          "action": "pipeline_complete",
+          "detail": "",
+          "elapsed_ms": 27.1
+        }
+      ]
+    }
+  }
+]
