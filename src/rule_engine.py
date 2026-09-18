@@ -1,18 +1,7 @@
-"""
-Policy reasoning logic — no LLM call, just Python functions that check
-each policy rule against the case facts.
-
-Every check does three things: decides if the rule even applies to this
-case, pulls the retrieved evidence chunk that backs it up, and returns a
-Finding (text + citation + whether it blocks the claim, needs review, or
-is just informational).
-
-Numbers and exclusions here are the actual ones from the supplied policy,
-not something an LLM guessed at. If an LLM gets plugged in later (see
-src/llm.py) it should only be used to phrase things, not decide them —
-the decisions stay here, and ValidationAgent checks anything an LLM adds
-still has a real citation behind it.
-"""
+"""Checks each policy rule against the case facts. No LLM call — pure Python,
+so it's deterministic and doesn't need an API key. Each check returns a
+Finding with the text, its supporting citation, and whether it blocks the
+claim, needs review, or is just informational."""
 
 from dataclasses import dataclass
 from datetime import date
@@ -610,6 +599,7 @@ def evaluate(case, retriever: HybridRetriever) -> Dict:
                     text="Pre-hospitalization expenses claimed outside the 30-day window are not payable.",
                     evidence=_best(pp_results),
                     kind="limit",
+                    severity="partial_exclude",
                 )
             )
         if not post_ok:
@@ -618,6 +608,7 @@ def evaluate(case, retriever: HybridRetriever) -> Dict:
                     text="Post-hospitalization expenses claimed outside the 60-day window are not payable.",
                     evidence=_best(pp_results),
                     kind="limit",
+                    severity="partial_exclude",
                 )
             )
 
@@ -646,6 +637,7 @@ def _aggregate(findings: List[Finding], dimensions_checked: List[str]) -> Dict:
     blocking = [f for f in findings if f.kind == "finding" and f.severity == "block"]
     review = [f for f in findings if f.kind == "finding" and f.severity == "review"]
     limits = [f for f in findings if f.kind == "limit"]
+    partial_exclusions = [f for f in findings if f.kind == "limit" and f.severity == "partial_exclude"]
     missing_evidence = [f for f in findings if f.kind == "missing_evidence"]
     plain_findings = [f for f in findings if f.kind == "finding" and f.severity == "info"]
 
@@ -655,6 +647,13 @@ def _aggregate(findings: List[Finding], dimensions_checked: List[str]) -> Dict:
     elif review:
         decision = "NEEDS_REVIEW"
         confidence = 0.55
+    elif partial_exclusions:
+        # A specific claim component (e.g. pre/post-hospitalization expenses
+        # outside the policy window) is wholly excluded, while the rest of
+        # the claim remains admissible - distinct from a sub-limit just
+        # capping the payable amount.
+        decision = "PARTIALLY_ADMISSIBLE"
+        confidence = 0.75
     elif limits and any(("payable INR" in f.text) or ("exceed" in f.text) for f in limits):
         decision = "ADMISSIBLE_WITH_LIMITS"
         confidence = 0.8

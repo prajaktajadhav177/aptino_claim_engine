@@ -6,7 +6,7 @@ Endpoints:
     GET  /cases/public        -> list of the 12 supplied public cases
     GET  /cases/public/{id}   -> one public case by case_id
     GET  /cases/custom        -> list of the 5+ candidate-created cases
-    POST /analyze-claim       -> run the full pipeline on a ClaimCase JSON body
+    POST /analyze             -> run the full pipeline on a ClaimCase JSON body
 
 Run with:
     uvicorn src.main:app --reload --port 8000
@@ -91,7 +91,7 @@ def list_custom_cases():
     return _load_json(CUSTOM_CASES_PATH)
 
 
-@app.post("/analyze-claim", response_model=DecisionResponse)
+@app.post("/analyze", response_model=DecisionResponse)
 def analyze_claim(case: ClaimCase):
     if _orchestrator is None:
         raise HTTPException(
