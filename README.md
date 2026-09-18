@@ -1,12 +1,18 @@
 # Aptino — Policy-Aware Claim Decision Engine
 
-Reads the Universal Sompo CSC Individual Health Insurance policy PDF and
-decides whether a claim is admissible, using retrieval + a small multi-agent
-pipeline. No API key needed — the reasoning step is a rule engine, not an
-LLM call.
+Reads the Universal Sompo CSC Individual Health Insurance policy PDF and decides
+whether a claim is admissible, using retrieval + a multi-agent pipeline. No API
+key needed — reasoning is a deterministic rule engine, not an LLM call.
+
+**Live app:** https://prajaktajadhav177-aptino-claim-engine-frontendapp-by1iig.streamlit.app
+**Live API:** https://aptino-claim-engine-hdk7.onrender.com (docs at `/docs`)
+**Repo:** https://github.com/prajaktajadhav177/aptino_claim_engine
 
 If the policy + case facts aren't enough to decide safely, it returns
 `NEEDS_REVIEW` instead of guessing.
+
+> Note: the backend is on Render's free tier and sleeps after 15 min idle —
+> the first request after a while may take 30-60s to wake up.
 
 ## What's here
 aptino_claim_engine/
@@ -15,9 +21,9 @@ aptino_claim_engine/
 │ ├── public_test_cases.json # supplied, not modified
 │ └── custom_test_cases.json # cases I added
 ├── src/
-│ ├── ingestion.py # PDF -> chunks (by section, not fixed size)
+│ ├── ingestion.py # PDF -> chunks by section, not fixed size
 │ ├── retrieval.py # BM25 + TF-IDF/SVD + RRF fusion + rerank
-│ ├── rule_engine.py # the actual policy logic
+│ ├── rule_engine.py # the actual policy logic (no LLM)
 │ ├── schema.py # Pydantic models
 │ ├── agents.py # Retrieval / Reasoning / Validation / Decision agents
 │ ├── orchestrator.py # runs the 4 agents in order
@@ -27,70 +33,45 @@ aptino_claim_engine/
 └── requirements.txt
 
 
-## Running it
+## Running locally
 
 ```bash
 pip install -r requirements.txt
-
 uvicorn src.main:app --reload --port 8000     # terminal 1
 streamlit run frontend/app.py                  # terminal 2
 ```
 
-Pick a case in the sidebar, click Analyze.
-
-Or skip the servers and just run it in Python:
-
-```python
-from src.orchestrator import ClaimOrchestrator
-from src.schema import ClaimCase
-import json
-
-orch = ClaimOrchestrator("data/policy/policy.pdf")
-case = ClaimCase(**json.load(open("data/public_test_cases.json"))[7])
-print(orch.analyze(case).model_dump_json(indent=2))
-```
-
 ## Why a rule engine instead of an LLM
 
-Didn't want to require an API key, and honestly it's easier to trust — I
-hardcoded the actual numbers from the policy (30-day waiting period,
-48-month PED period, the 25%/40%/1%/2%/75% sub-limits, 20% domiciliary cap,
-30/60-day pre/post windows) instead of hoping a model gets them right every
-time. Retrieval is still real hybrid search (BM25 + TF-IDF/SVD, fused with
-RRF) — it's just the reasoning on top that's rules, not a model call.
-
-If I swap in an LLM later, it'd replace `PolicyReasoningAgent` only. The
-sub-limit math should probably stay rule-based regardless.
+No API key required, and the numbers are auditable — I hardcoded the actual
+policy figures (30-day waiting period, 48-month PED period, 25%/40%/1%/2%/75%
+sub-limits, 20% domiciliary cap, 30/60-day pre/post windows) instead of
+trusting a model to get them right every time. Retrieval is still real hybrid
+search (BM25 + TF-IDF/SVD, fused with RRF); only the reasoning on top is
+rule-based.
 
 ## Retrieval
 
-PDF gets chunked by the policy's own section headings (DEFINITIONS, WHAT WE
-COVER, WHAT WE EXCLUDE, etc.) instead of cutting every N characters.
-DEFINITIONS gets split further, one chunk per defined term, since most
-decisions come down to a single definition like "what counts as a
-Hospital." Every chunk keeps its section and page number.
+PDF is chunked by the policy's own section headings (DEFINITIONS, WHAT WE
+COVER, WHAT WE EXCLUDE, etc.), not fixed-size windows. DEFINITIONS is split
+further, one chunk per defined term, since most decisions hinge on a single
+definition. Every chunk keeps its section and page number for traceability.
 
-Search is BM25 (sparse, good for exact terms like "30 days") plus TF-IDF
-compressed with SVD (a cheap stand-in for dense embeddings — no model
-download needed). Results get combined with Reciprocal Rank Fusion, then
-reranked by keyword overlap.
+Search combines BM25 (sparse) with TF-IDF/SVD (dense, no model download
+needed), fused with Reciprocal Rank Fusion, then reranked on keyword overlap.
 
 ## Agents
 
-Four agents, one shared state object (see `schema.py` / `agents.py`) —
-not a chat history, an actual typed object each agent reads/writes fields
-on:
-
-- `RetrievalAgent` — figures out which policy dimensions matter for this
-  case (waiting period? domiciliary rules? exclusions?) and pulls evidence
-  for each.
-- `PolicyReasoningAgent` — applies the actual rule for each dimension and
-  attaches the evidence chunk it used as a citation.
-- `ValidationAgent` — checks every finding actually has a real citation.
-  If something's uncited, it fails validation.
-- `DecisionAgent` — finalizes the decision. If validation failed, it
-  downgrades to `NEEDS_REVIEW` instead of letting an unsupported claim
-  through.
+Four agents share one state object (`schema.py` / `agents.py`):
+- **RetrievalAgent** — figures out which policy dimensions apply (waiting
+  period, domiciliary rules, exclusions, sub-limits, etc.) and retrieves
+  evidence for each.
+- **PolicyReasoningAgent** — applies each rule and attaches the evidence
+  chunk it relied on as a citation.
+- **ValidationAgent** — checks every finding has a real citation; fails if
+  anything is unsupported.
+- **DecisionAgent** — finalizes the decision, downgrading to `NEEDS_REVIEW`
+  if validation failed.
 
 ## Decision format
 
@@ -106,14 +87,12 @@ on:
     {"claim": "...", "source": "policy.pdf", "page": 8, "section": "WHAT WE EXCLUDE", "chunk_id": "chunk_..."}
   ],
   "validation": {"status": "PASS", "unsupported_claims": []},
-  "trace": [
-    {"agent": "RetrievalAgent", "action": "hybrid_search", "detail": "...", "elapsed_ms": 12.3}
-  ]
+  "trace": [{"agent": "RetrievalAgent", "action": "hybrid_search", "detail": "...", "elapsed_ms": 12.3}]
 }
 ```
 
-`decision` is one of `ADMISSIBLE`, `ADMISSIBLE_WITH_LIMITS`,
-`NOT_ADMISSIBLE`, `NEEDS_REVIEW`.
+`decision` is one of: `ADMISSIBLE`, `ADMISSIBLE_WITH_LIMITS`,
+`PARTIALLY_ADMISSIBLE`, `NOT_ADMISSIBLE`, `NEEDS_REVIEW`.
 
 ## API
 
@@ -123,45 +102,61 @@ on:
 | GET | `/cases/public` | the 12 supplied cases |
 | GET | `/cases/public/{case_id}` | one case |
 | GET | `/cases/custom` | cases I added |
-| POST | `/analyze-claim` | send a claim JSON, get a decision back |
+| POST | `/analyze` | send a claim JSON, get a decision back |
 
 ```bash
-curl -X POST http://localhost:8000/analyze-claim \
+curl -X POST https://aptino-claim-engine-hdk7.onrender.com/analyze \
   -H "Content-Type: application/json" \
-  -d @<(curl -s http://localhost:8000/cases/public/PUB-008)
+  -d @<(curl -s https://aptino-claim-engine-hdk7.onrender.com/cases/public/PUB-008)
 ```
 
-Bad input just gets a 422 with the field errors — FastAPI/Pydantic handle
-that for free.
+Bad input returns a 422 with field-level errors (FastAPI/Pydantic, automatic).
 
 ## Evaluation
 
 ```bash
 python -m eval.evaluate
 ```
+Runs all public + custom cases, writes `eval/results.json`. See that file for
+the full per-case breakdown (decision, confidence, validation status,
+citation count).
 
-Runs everything in `public_test_cases.json` + `custom_test_cases.json`,
-writes `eval/results.json`. Last run:
+## Failure cases found and fixed during development
 
-<!-- PASTE YOUR ACTUAL eval/results.json TABLE HERE — don't reuse old numbers -->
+1. **Permanent disease exclusions weren't checked at all.** Early version let
+   Asthma/Diabetes/Hypertension claims through as admissible because only
+   waiting periods were modeled, not the policy's separate "permanently
+   excluded illness" list (item 20). Root cause: I'd modeled waiting periods
+   thoroughly but missed that some exclusions aren't time-based at all. Fixed
+   by adding `EXCLUDED_ILLNESS_KEYWORDS` as its own check, independent of
+   waiting-period logic.
+2. **Alternative treatment (Ayurveda/Homeopathy) wasn't excluded.** A
+   Panchakarma claim came back admissible because nothing checked treatment
+   *system*, only diagnosis/procedure against exclusion lists. Fixed by
+   adding a dedicated alternative-treatment keyword check.
+3. **Accident-related joint replacement was wrongly blocked.** The policy
+   excludes "joint replacement unless due to accident" — my keyword match
+   didn't parse the exception clause, so it always applied the 1-year
+   waiting period even for accident cases. Fixed by checking for an
+   accident/injury flag before applying that specific waiting period.
+4. **Excluded-illness keyword matching can't distinguish "treatment of X"
+   from "treatment of a complication of X"** (e.g. diabetic foot infection
+   vs. diabetes itself) — still unresolved, surfaced as `NEEDS_REVIEW`
+   rather than guessed. Would need an LLM read of the discharge summary to
+   resolve properly.
 
-## Known issues
+## Known limitations
 
-- 30-day waiting period has no accident carve-out in this policy text, so
-  an accident claim inside the first 30 days still comes back
-  `NOT_ADMISSIBLE`. Some real insurers waive this for accidents, but it's
-  not written in this policy, so I didn't invent it.
-- Keyword matching on the excluded-illness list (item 20) can't tell
-  "treatment of diabetes" from "treatment of a complication of diabetes."
-  Comes back `NEEDS_REVIEW` rather than guessing.
 - No `length_of_stay_days` field in the input, so the room-rent sub-limit
-  (1%/day) can never be fully pinned down — always shows up as missing
-  evidence.
-- Dense retrieval is TF-IDF/SVD, not real embeddings. Weaker on pure
+  (1%/day) can never be fully pinned down — always shows as missing evidence.
+- Dense retrieval is TF-IDF/SVD, not real embeddings — weaker on pure
   paraphrases with no shared vocabulary.
+- `PARTIALLY_ADMISSIBLE` currently only fires for pre/post-hospitalization
+  expenses claimed outside the policy's 30/60-day windows; other exclusion
+  types remain binary (blocking or not).
 
-## Deploying
+## Deployment
 
-Backend on Render (`uvicorn src.main:app --host 0.0.0.0 --port $PORT`),
-frontend on Streamlit Community Cloud pointed at `frontend/app.py` with
-`BACKEND_URL` set to the Render URL. No secrets needed either way.
+Backend on Render (free tier): `uvicorn src.main:app --host 0.0.0.0 --port $PORT`.
+Frontend on Streamlit Community Cloud, `frontend/app.py`, with `BACKEND_URL`
+secret set to the Render URL above. No other secrets required.
