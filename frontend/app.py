@@ -43,7 +43,7 @@ def fetch_cases(kind: str):
 
 
 def analyze(case_dict: dict):
-    resp = requests.post(f"{BACKEND_URL}/analyze-claim", json=case_dict, timeout=60)
+    resp = requests.post(f"{BACKEND_URL}/analyze", json=case_dict, timeout=60)
     return resp
 
 
